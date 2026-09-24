@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Courses | SCMS</title>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<script>renderNav("admin")</script><main class="page"><div class="container"><div class="filter-bar"><div><h1 style="margin:0">Courses</h1><p class="muted">Create and manage available courses.</p></div><a class="btn" href="add-course.html">Add Course</a></div><div class="table-wrap"><table><thead><tr><th>Course</th><th>Category</th><th>Instructor</th><th>Duration</th><th>Action</th></tr></thead><tbody id="rows"></tbody></table></div></div></main>
+<script>if(protect("admin")){let list=getData("scms_courses",courses);rows.innerHTML=list.map(c=>`<tr><td>${c.title}</td><td>${c.category}</td><td>${c.instructor}</td><td>${c.duration}</td><td class="actions"><a class="btn secondary" href="edit-course.html?id=${c.id}">Edit</a><button class="btn danger" onclick="removeCourse(${c.id})">Delete</button></td></tr>`).join("");window.removeCourse=id=>{if(confirm("Delete this course?")){let l=getData("scms_courses",[]).filter(c=>c.id!==id);saveData("scms_courses",l);location.reload()}}}</script>
+
+<script src="../js/main.js"></script>
+</body>
+</html>

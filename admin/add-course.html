@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Add Course | SCMS</title>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<script>renderNav("admin")</script><main class="page"><div class="container"><div class="form-card"><h1>Add Course</h1><div id="msg"></div><form id="form"><div class="form-group"><label>Course Name</label><input id="title" required></div><div class="form-group"><label>Category</label><input id="category" required></div><div class="form-group"><label>Instructor</label><input id="instructor" required></div><div class="form-group"><label>Duration</label><input id="duration" placeholder="6 Weeks" required></div><div class="form-group"><label>Level</label><select id="level"><option>Beginner</option><option>Intermediate</option><option>Advanced</option></select></div><div class="form-group"><label>Description</label><textarea id="description" required></textarea></div><div class="form-actions"><button class="btn">Add Course</button><a class="btn secondary" href="courses.html">Cancel</a></div></form></div></div></main>
+<script>if(protect("admin"))form.onsubmit=e=>{e.preventDefault();let l=getData("scms_courses",[]);l.push({id:Date.now(),title:title.value,category:category.value,instructor:instructor.value,duration:duration.value,level:level.value,description:description.value});saveData("scms_courses",l);location.href="courses.html"}</script>
+
+<script src="../js/main.js"></script>
+</body>
+</html>

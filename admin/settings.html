@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Settings | SCMS</title>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<script>renderNav("admin")</script><main class="page"><div class="container"><div class="form-card" style="margin-left:0"><h1>Settings</h1><div id="msg"></div><form id="form"><div class="form-group"><label>Website Name</label><input id="siteName" value="Student Course Management System"></div><div class="form-group"><label>Admin Email</label><input id="email" type="email" value="admin@gmail.com"></div><div class="form-group"><label>Notifications</label><select id="notifications"><option>Enabled</option><option>Disabled</option></select></div><div class="form-group"><label>Appearance</label><select><option>Light Theme</option></select></div><button class="btn">Save Settings</button></form></div></div></main>
+<script>if(protect("admin"))form.onsubmit=e=>{e.preventDefault();saveData("scms_settings",{siteName:siteName.value,email:email.value,notifications:notifications.value});msg.innerHTML='<div class="alert">Settings saved successfully.</div>'}</script>
+
+<script src="../js/main.js"></script>
+</body>
+</html>

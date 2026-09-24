@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Enrollments | SCMS</title>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<script>renderNav("admin")</script><main class="page"><div class="container"><h1>Enrollments</h1><div class="table-wrap"><table><thead><tr><th>Student</th><th>Course</th><th>Progress</th><th>Status</th></tr></thead><tbody id="rows"></tbody></table></div></div></main>
+<script>if(protect("admin")){let e=getData("scms_enrollments",[]);let list=getData("scms_courses",courses);rows.innerHTML=e.map(x=>{let c=list.find(c=>c.id===x.courseId)||{title:"Unknown"};return `<tr><td>${x.student}</td><td>${c.title}</td><td>${x.progress}%</td><td><span class="badge">${x.status}</span></td></tr>`}).join("")||'<tr><td colspan="4">No enrollments yet.</td></tr>'}</script>
+
+<script src="../js/main.js"></script>
+</body>
+</html>

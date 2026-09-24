@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Students | SCMS</title>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<script>renderNav("admin")</script><main class="page"><div class="container"><h1>Students</h1><div class="filter-bar"><input id="search" placeholder="Search student..."><button class="btn" onclick="addDemo()">Add Student</button></div><div class="table-wrap"><table><thead><tr><th>Name</th><th>Email</th><th>Register No.</th><th>Action</th></tr></thead><tbody id="rows"></tbody></table></div></div></main>
+<script>if(protect("admin")){function show(){let list=getData("scms_registered_students",[]);let q=search.value.toLowerCase();rows.innerHTML=list.filter(s=>(s.name+s.email+s.registerNo).toLowerCase().includes(q)).map((s,i)=>`<tr><td>${s.name}</td><td>${s.email}</td><td>${s.registerNo}</td><td><button class="btn danger" onclick="del(${i})">Delete</button></td></tr>`).join("")||'<tr><td colspan="4">No registered students found.</td></tr>'}function del(i){let l=getData("scms_registered_students",[]);l.splice(i,1);saveData("scms_registered_students",l);show()}function addDemo(){let l=getData("scms_registered_students",[]);l.push({name:"New Student",email:"student"+Date.now()+"@example.com",registerNo:"SCMS"+Date.now(),password:"student123"});saveData("scms_registered_students",l);show()}search.oninput=show;show()}</script>
+
+<script src="../js/main.js"></script>
+</body>
+</html>
