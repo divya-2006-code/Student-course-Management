@@ -11,17 +11,14 @@ permissions:
   id-token: write
 
 jobs:
-
   deploy:
-
     runs-on: ubuntu-latest
-  
+
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
-
       - name: Get source code
         uses: actions/checkout@v4
 
@@ -30,11 +27,14 @@ jobs:
         with:
           node-version: 20
           cache: npm
+          cache-dependency-path: ./scms-react/package-lock.json
 
       - name: Install dependencies
+        working-directory: ./scms-react
         run: npm ci
 
       - name: Build React project
+        working-directory: ./scms-react
         run: npm run build
 
       - name: Setup GitHub Pages
@@ -43,10 +43,8 @@ jobs:
       - name: Upload build files
         uses: actions/upload-pages-artifact@v4
         with:
-          path: ./dist
+          path: ./scms-react/dist
 
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-
-
