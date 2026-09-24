@@ -22,7 +22,9 @@ jobs:
           node-version: 20
 
       - name: Install dependencies
+        working-directory: ./Student-course-Management
         run: npm install
 
       - name: Build project
+        working-directory: ./Student-course-Management
         run: npm run build
